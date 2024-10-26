@@ -1,35 +1,28 @@
-import React, { useEffect } from "react";
+import React, { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import HomePage from "./pages/HomePage";
-import { Profile } from "./pages/Profile";
-import { Settings } from "./pages/Settings";
 import BaseLayout from "./layouts/BaseLayout";
 import { syncThemeWithLocal } from "./helpers/theme_helpers";
 import { useTranslation } from "react-i18next";
 import { updateAppLanguage } from "./helpers/language_helpers";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { routeTree } from "./routeTree.gen";
+import { createRouter, Link, RouterProvider } from "@tanstack/react-router";
 import "./localization/i18n";
 
-export default function App() {
-    const { i18n } = useTranslation();
-
-    useEffect(() => {
-        syncThemeWithLocal();
-        updateAppLanguage(i18n);
-    }, []);
-
-    return (
-        <Router>
-            <BaseLayout>
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Routes>
-            </BaseLayout>
-        </Router>
-    );
-}
+const router = createRouter({
+    routeTree,
+    defaultNotFoundComponent: () => {
+        return (
+            <div>
+                <p>Not found!</p>
+                <Link to="/">Go home</Link>
+            </div>
+        );
+    },
+});
 
 const root = createRoot(document.getElementById("app")!);
-root.render(<App />);
+root.render(
+    <StrictMode>
+        <RouterProvider router={router} />
+    </StrictMode>
+);

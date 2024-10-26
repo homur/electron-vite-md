@@ -1,7 +1,4 @@
 import React from "react";
-import LangToggle from "@/components/LangToggle";
-import ToggleTheme from "@/components/ToggleTheme";
-import { useTranslation } from "react-i18next";
 import { SettingsCardComponent } from "@/components/SettingsCard";
 
 export const Settings = () => {

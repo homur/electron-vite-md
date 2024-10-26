@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import React from "react";
-import { home, settings, user } from "heroicons-react";
 
 export const Sidebar = () => {
     return (

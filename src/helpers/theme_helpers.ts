@@ -1,6 +1,5 @@
 import { ThemeMode } from "@/lib/types/theme-mode";
-import settingsStore from "@/stores/settings";
-
+import { store } from "@/stores/_root";
 const THEME_KEY = "theme";
 
 export interface ThemePreferences {
@@ -21,17 +20,14 @@ export async function getCurrentTheme(): Promise<ThemePreferences> {
 export async function setTheme(newTheme: ThemeMode) {
     switch (newTheme) {
         case "dark":
-            settingsStore.setTheme("dark");
             await window.themeMode.dark();
             updateDocumentTheme(true);
             break;
         case "light":
-            settingsStore.setTheme("light");
             await window.themeMode.light();
             updateDocumentTheme(false);
             break;
         case "system":
-            settingsStore.setTheme("system");
             const isDarkMode = await window.themeMode.system();
             updateDocumentTheme(isDarkMode);
             break;
@@ -46,6 +42,7 @@ export async function toggleTheme() {
 
     updateDocumentTheme(isDarkMode);
     localStorage.setItem(THEME_KEY, newTheme);
+    store.settingsStore.setTheme(newTheme);
 }
 
 export async function syncThemeWithLocal() {
@@ -54,6 +51,8 @@ export async function syncThemeWithLocal() {
         setTheme("system");
         return;
     }
+
+    store.settingsStore.setTheme(local);
 
     await setTheme(local);
 }

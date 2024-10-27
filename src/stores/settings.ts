@@ -1,17 +1,18 @@
 import { action, makeObservable, observable } from "mobx";
+import { RootStore } from "./_root";
 
-class SettingsStore {
+export class SettingsStore {
     language = "";
     theme = "";
-    loggedIn = false;
+    rootStore: RootStore;
 
-    constructor() {
+    constructor(rootStore: RootStore) {
         makeObservable(this, {
             language: observable,
             theme: observable,
-            loggedIn: observable,
             setTheme: action,
         });
+        this.rootStore = rootStore;
     }
 
     setTheme(theme: string) {
@@ -19,5 +20,4 @@ class SettingsStore {
     }
 }
 
-const settingsStore = new SettingsStore();
-export default settingsStore;
+export default SettingsStore;

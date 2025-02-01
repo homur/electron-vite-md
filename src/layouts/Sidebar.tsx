@@ -5,9 +5,10 @@ import { icons } from "lucide-react";
 
 export const Sidebar = () => {
     return (
-        <div className="sidebar flex h-screen w-64 flex-col bg-stone-900 dark:bg-stone-100">
+        <div className="sidebar flex h-screen w-64 flex-col bg-stone-900 dark:bg-sky-950">
             <div className="flex flex-col space-y-4 p-4">
                 <SidebarItem to="/" icon="House" label="Home" />
+                <SidebarItem to="/chat" icon="MessageSquare" label="Chat" />
                 <SidebarItem to="/profile" icon="User" label="Profile" />
                 <SidebarItem to="/settings" icon="Settings" label="Settings" />
             </div>

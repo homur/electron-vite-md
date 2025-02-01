@@ -85,14 +85,29 @@
         --ring: 222.2 84% 4.9%;
 
         --radius: 0.5rem;
+
+        /* custom colors */
+        --myrtle-green: 186 18% 42%;
+        --eerie-black: 77 12% 11%;
+        --black-olive: 90 12% 22%;
+        --olivine: 101 21% 58%;
+        --mindaro: 83 70% 78%;
+        --jet: 0, 2%, 19%;
+        --tiffany-blue: 171, 56%, 69%;
+        --uranian-blue: 202, 84%, 81%;
+        --columbia-blue: 213, 37%, 81%;
+        --rosy-brown: 348, 23%, 67%;
+        --thistle: 319, 18%, 79%;
+        --off-white: 180, 1%, 75%;
+        --muted-jet: 0, 2%, 50%;
     }
 
     .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+        --background: var(--jet);
+        --foreground: var(--thistle);
 
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
+        --card: var(--off-white);
+        --card-foreground: var(--jet);
 
         --popover: 222.2 84% 4.9%;
         --popover-foreground: 210 40% 98%;
@@ -104,10 +119,10 @@
         --secondary-foreground: 210 40% 98%;
 
         --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+        --muted-foreground: var(--muted-jet);
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent: var(--off-white);
+        --accent-foreground: var(--jet);
 
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 210 40% 98%;

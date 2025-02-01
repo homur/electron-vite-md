@@ -11,8 +11,8 @@ if (require("electron-squirrel-startup")) {
 function createWindow() {
     const preload = path.join(__dirname, "preload.js");
     const mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 840,
         webPreferences: {
             devTools: inDevelopment,
             contextIsolation: true,
@@ -31,6 +31,18 @@ function createWindow() {
         mainWindow.loadFile(
             path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
         );
+    }
+
+    // Start the AI API
+    const apiPath = inDevelopment
+        ? path.join(__dirname, "api/ai.js") // Dev path, relative to the project
+        : path.join(process.resourcesPath, "api/ai.js"); // Production path after being copied
+
+    try {
+        const { startAPI } = require(apiPath);
+        startAPI();
+    } catch (error) {
+        console.error("Error loading the API:", error);
     }
 }
 

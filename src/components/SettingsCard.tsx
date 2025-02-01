@@ -70,7 +70,11 @@ export const SettingsCardComponent = observer(() => {
                     </Select>
                 </div>
                 <div className="pt-2">
-                    <Button variant="outline" className="w-full" onClick={handleGithubLogin}>
+                    <Button
+                        variant="outline"
+                        className="dark:bg-text-card-foreground w-full"
+                        onClick={handleGithubLogin}
+                    >
                         <Github className="mr-2 h-4 w-4" />
                         Login with GitHub
                     </Button>
